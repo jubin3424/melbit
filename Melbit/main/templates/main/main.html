@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 col-xs-12 main_message">
+            <div class="intro">당신의 음악을 팔아보세요.</div>
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    $.backstretch([
+        "{% static 'bg.jpg' %}",
+        "{% static 'bg2.jpg' %}",
+    ], {
+    fade: 750,
+    duration: 4000,
+});
+</script>
+{% endblock %}
+

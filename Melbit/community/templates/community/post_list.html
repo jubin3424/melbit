@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/extra_background.css'%}">
+{% endblock %}
+{% block content %}
+<div class="content-container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 post_write">
+            <div class="pretty_font_title">Community</div><br>
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+                    <th>제목</th>
+                    <th><span class="glyphicon glyphicon-time" aria-hidden="true"></span></th></tr>
+                {% for post in post_list %}
+                <tr><td width="15%">{{ post.user }}</td>
+                    <td width="65%">
+                        <a href="{% url 'community:post_detail' post.pk %}">{{ post.title }}</a>
+                        {% if post.photo %}
+                            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                        {% endif %}
+                    </td>
+                    <td width="20%">{{ post.created_at|date:"Y-m-d" }}</td></tr>
+
+                {% endfor %}
+            </table>
+    <!-- 페이지네이션 -->
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+              {% if page_obj.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+        <!-- 페이지네이션 -->
+        <div class="write_button">
+            <a href="{% url 'community:post_write' %}" class="btn btn-default" style="float:right;">글 작성</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block extra_script %}
+{% include 'community/post_background.html' %}
+{% endblock %}

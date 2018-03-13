@@ -1,0 +1,14 @@
+{% load static %}
+    <script>
+        $.backstretch([
+                "{% static 'wallpaper1.jpg' %}",
+                "{% static 'wallpaper2.jpg' %}",
+                "{% static 'wallpaper3.jpg' %}",
+                "{% static 'wallpaper4.jpg' %}",
+                "{% static 'wallpaper5.jpg' %}",
+            ], {
+        fade: 750,
+        duration: 3000,
+}
+        );
+    </script>

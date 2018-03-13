@@ -1,0 +1,64 @@
+div.container-fluid .navbar-header .navbar-brand .brand_logo {
+    color:white;
+}
+
+ul.dropdown-menu {
+    background-color:#1A1A1A;
+}
+
+ul.dropdown-menu > li > a {
+    color:#7E898C;
+}
+
+ul.dropdown-menu > li > a:hover {
+    background-color:#545454;
+    color:#eeeeee;
+}
+
+.navbar {
+  min-height: 80px;
+}
+
+.navbar-brand {
+  padding: 12px;
+  height: 80px;
+  line-height: 80px;
+}
+
+.navbar-toggle {
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 23px;
+  padding: 9px 10px !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 26.5px;
+    padding-bottom: 26.5px;
+    line-height: 27px;
+  }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:black;
+    color:#565656;
+}
+
+footer ul.list-unstyled li a {
+    color:#565656;
+}
+
+div.col-md-8.col-xs-12.main_message {
+    height:400px;
+    color:white;
+    text-align:center;
+}
+
+.main_message .intro {
+    font-size:4vw;
+    padding-top:150px;
+}

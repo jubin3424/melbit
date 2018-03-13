@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+
+<div class="content-container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 post_write">
+            <div class="pretty_font_title">Community</div><br>
+        <form method="post" action="" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+            {{ form|bootstrap }}
+        <input type="submit" class="btn-success" value="등록">
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_script %}
+{% include 'community/post_background.html' %}
+{% endblock %}

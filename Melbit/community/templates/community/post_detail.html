@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load hitcount_tags %}
+{% load static %}
+{% block content %}
+
+
+{% get_hit_count_js_variables for post as hitcount %}
+{% get_hit_count for post as total_hits %}
+
+    <div class="content-container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 post_write">
+                <div class="pretty_font_title">Community</div><br>
+                <div class="row">
+                    <div class="col-md-12 post_title"><h2>{{ post.title }}</h2></div>
+                    <br><br>
+                </div>
+                <div class="row user_part">
+
+                    <div class="col-md-4 post_user">Posted by {{ post.user }}</div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3 time">{{ post.created_at|date:"Y-m-d h:i" }}</div>
+                    <div class="col-md-3">
+                        <span class="glyphicon glyphicon-thumbs-up"
+                              aria-hidden="true"></span> : 100
+                        &nbsp;&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-eye-open"
+                              aria-hidden="true"></span> : {{ total_hits }}</div>
+
+                </div>
+                <div class="row">
+                <div class="post_content">
+                    {{ post.content|linebreaksbr }}
+                    <br><br>
+                    {% if post.photo %}
+                    <br><br>
+                        <a href="{{ post.photo.url }}" target="_parent">"<img src="{{ post.photo.url }}" width="250px"></a>
+                    <br><br>
+                {% endif %}
+
+                {% if post.file %}
+               <a id="id_uploaded_file" href="{{ post.file.url }}" download>{{ post.file.name }}</a>
+
+                {% endif %}
+                <br>
+                    <a href="{% url 'community:post_edit' post.pk %}"
+                           class="btn btn-info">수정</a>
+                    <a href="{% url 'community:post_delete' post.pk %}"
+                           class="btn btn-danger" id="post_delete"
+                       onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+                </div>
+
+                    <br>
+                    <a href="{% url 'community:post_list' %}"
+                           class="btn btn-default" style="float:right;">목록</a>
+                </div>
+                <br>
+
+                    <h1 class="pretty_font_title">Comment</h1>
+            <div class="comment_area">
+                <div class="row">
+                <form method="post" id="comment_form" action="{% url 'community:comment_write' post.pk %}">
+                {% csrf_token %}
+                    <div class="col-md-10">
+                        <label class="control-label" for="id_content">Content</label>
+                        <textarea name="content" cols="40" rows="10" class=" form-control" required id="id_content"></textarea>
+                    </div>
+                    <div class="col-md-2 comment_btn">
+                    <button type="submit" class="btn-success">등록</button>
+                        </div>
+                </form>
+                    <script>
+                        $('#comment_form').submit(function(e){
+                            e.preventDefault();
+
+                            var url = '{% url 'community:comment_write' post.pk %}';
+                            var data = {
+                                'content': $('textarea#id_content').val(),
+                            };
+                            $.post(url, data)
+                                .done(function(r){
+                                    $('#comment_list').append(r);
+                                    $('input[name="content"]').val('');
+                                })
+                                .fail(function(r){
+                                    alert('에러가 발생했습니다. 잠시후에 다시 시도해주세요.');
+                                });
+                        })
+                    </script>
+                    </div><br>
+
+                <div id="comment_list">
+                {% for comment in comments %}
+                {% include 'community/comment.html' %}
+                {% endfor %}
+                </div>
+            </div>
+
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block extra_script %}
+{% include 'community/post_background.html' %}
+    <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
+
+{% get_hit_count_js_variables for post as hitcount %}
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $.postCSRF("{{ hitcount.ajax_url }}", { hitcountPK : "{{ hitcount.pk }}" })
+        .done(function(data){
+          $('<i />').text(data.hit_counted).attr('id','hit-counted-value').appendTo('#hit-counted');
+          $('#hit-response').text(data.hit_message);
+      }).fail(function(data){
+          console.log('POST failed');
+          console.log(data);
+      });
+    });
+    </script>
+
+{% endblock %}

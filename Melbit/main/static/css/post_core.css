@@ -1,0 +1,89 @@
+.content-container {
+    width:80%;
+    margin:auto;
+    padding-bottom:30px;
+}
+.pretty_font_title {
+    font-family: Lobster;
+    font-size:40px;
+}
+
+tr td a {
+    color:#333;
+}
+
+.row .post_write {
+    background-color:white;
+    margin-top:50px;
+    border-radius:5px;
+    padding:25px;
+    box-shadow: 2px 2px 8px #eeeeee;
+}
+
+.post_title {
+    font-size: 20px;
+    border: 1px #7373733b solid;
+    border-bottom: none;
+}
+
+.post_title h2 {
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.post_write div.row.user_part{
+    border: 1px #7373733b solid;
+    padding:3px;
+    background-color: #ececec;
+}
+
+div.post_content {
+    border: 1px #7373733b solid;
+    border-top: none;
+    padding:20px;
+}
+
+div.time {
+    color:#b5abab;
+}
+
+.post_content {
+    font-size: 15px;
+}
+
+.post_write table.table.table-hover tr th {
+    border-top: none;
+    text-align:center;
+}
+
+/* 코멘트 부분 css */
+
+.user_id {
+    padding: 2px 2px 2px 10px;
+    color:#5e5e5e;
+    background-color: #ececec;
+    border-right: 2px solid #eeeeee;
+}
+
+.comment_part {
+    padding: 10px;
+    background-color: #fbf5f5;
+    border-bottom: 2px solid #eeeeee;
+    border-right: 2px solid #eeeeee;
+}
+
+.comment_area textarea.form-control {
+    height: 80px;
+    display: inline;
+}
+
+.comment_area .btn-success {
+    width: 100%;
+    height: 80px;
+    display: inline;
+}
+
+.col-md-2.comment_btn {
+    padding-top: 25px;
+    padding-left: 0;
+}
