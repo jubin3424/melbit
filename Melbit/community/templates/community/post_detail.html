@@ -82,7 +82,7 @@
                             $.post(url, data)
                                 .done(function(r){
                                     $('#comment_list').append(r);
-                                    $('input[name="content"]').val('');
+                                    $('textarea#id_content').val('');
                                 })
                                 .fail(function(r){
                                     alert('에러가 발생했습니다. 잠시후에 다시 시도해주세요.');

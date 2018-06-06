@@ -1,4 +1,4 @@
-#!/Users/jubin/PycharmProjects/Melbit/melbit_venv/bin/python3.6
+#!/Users/jubin/PycharmProjects/melbit/Melbit/melbit_venv/bin/python
 from django.core import management
 
 if __name__ == "__main__":

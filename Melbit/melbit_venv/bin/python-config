@@ -1,4 +1,4 @@
-#!/Users/jubin/PycharmProjects/Melbit/melbit_venv/bin/python
+#!/Users/jubin/PycharmProjects/melbit/Melbit/melbit_venv/bin/python
 
 import sys
 import getopt
